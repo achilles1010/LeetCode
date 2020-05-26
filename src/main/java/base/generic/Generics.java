@@ -1,4 +1,4 @@
-package generic;
+package base.generic;
 
 /**
  * ？ 表示不确定的 java 类型
