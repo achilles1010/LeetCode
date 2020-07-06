@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://leetcode-cn.com/problems/find-the-duplicate-number/solution/er-fen-fa-si-lu-ji-dai-ma-python-by-liweiwei1419/
+ * https://leetcode-cn.com/problemset/hot-100/
  * @author daixulin
  * @version : v1.0
  * @date 2020-07-02 1:59 下午 周四
