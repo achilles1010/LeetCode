@@ -1,31 +1,36 @@
 package algorithm.hot;
 
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * The type Convert bst.
+ *
  * @author daixulin
  * @version : v1.0
- * @date 2020-07-10 10:28 上午 周五
+ * @date 2020 -07-07 2:51 下午 周二
  */
-class FindDisappearedNumbers {
+@Data
+public class FindDisappearNumber {
     public static List<Integer> findDisappearedNumbers(int[] nums) {
-       HashMap<Integer, Boolean>  map = new HashMap<>();
+        HashMap<Integer, Boolean> map = new HashMap<>();
 
         for (int num : nums) {
             map.put(num, true);
         }
 
-       List<Integer> ret = new LinkedList<>();
+        List<Integer> ret = new LinkedList<>();
 
-       for (int i = 1; i < nums.length; i++) {
-           if (!map.containsKey(i)) {
-               ret.add(i);
-           }
-       }
+        for (int i = 1; i < nums.length; i++) {
+            if (!map.containsKey(i)) {
+                ret.add(i);
+            }
+        }
 
-       return ret;
+        return ret;
     }
 
     public static List<Integer> findDisappearedNumbersV2(int[] nums) {
