@@ -8,6 +8,8 @@ import java.util.concurrent.CountDownLatch;
  * @date 2020-05-22 1:48 下午 周五
  */
 public class CountDownLatchTest {
+
+
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch startSignal = new CountDownLatch(1);
         CountDownLatch doneSignal = new CountDownLatch(10);
