@@ -1,6 +1,5 @@
 package mapStruct;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,7 +10,7 @@ import java.util.Date;
  * @date 2020-08-11 2:55 下午 周二
  */
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class PersonDTO {
     private String userName;
     private Integer age;
