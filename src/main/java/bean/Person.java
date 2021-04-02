@@ -2,7 +2,11 @@ package bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author daixulin
@@ -10,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @date 2021-03-11 下午3:35 周四
  */
 @Component
-public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {
+public class Person implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
     private String name;
     private String address;
@@ -18,6 +22,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
 
     private BeanFactory beanFactory;
     private String beanName;
+    private ApplicationContext applicationContext;
 
     public Person() {
         System.out.println("【构造器】调用Person的构造器实例化");
@@ -83,7 +88,8 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
 
     // 这是InitializingBean接口方法
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
+
         System.out.println("【InitializingBean接口】调用InitializingBean.afterPropertiesSet()");
     }
 
@@ -94,7 +100,17 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
 
     // 通过<bean>的destroy-method属性指定的初始化方法
 
-    public void myDestory() {
+    public void myDestroy() {
         System.out.println("【destroy-method】调用<bean>的destroy-method属性指定的初始化方法");
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("调用ApplicationContext.setApplicationContext方法");
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("person!!...postConstruct");
     }
 }

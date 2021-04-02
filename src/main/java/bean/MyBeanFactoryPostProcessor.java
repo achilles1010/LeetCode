@@ -6,23 +6,24 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
  * @author daixulin
  * @version : v1.0
- * @date 2021-03-11 下午3:49 周四
+ * @date 2021-03-11 下午3:35 周四
  */
 @Component
-public class MyBeanFactoryPostProcesser implements BeanFactoryPostProcessor {
-
-    public MyBeanFactoryPostProcesser() {
-        super();
-        System.out.println("这是BeanFactoryPostProcessor实现类构造器！！");
-    }
+public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         System.out.println("BeanFactoryPostProcessor调用postProcessBeanFactory方法");
-        BeanDefinition beanDefinition = configurableListableBeanFactory.getBeanDefinition("person");
+        int count = beanFactory.getBeanDefinitionCount();
+        String[] names = beanFactory.getBeanDefinitionNames();
+        System.out.println("当前BeanFactory中有"+count+" 个Bean");
+        System.out.println(Arrays.asList(names));
+        BeanDefinition beanDefinition = beanFactory.getBeanDefinition("person");
         beanDefinition.getPropertyValues().addPropertyValue("phone", "110");
     }
 }
