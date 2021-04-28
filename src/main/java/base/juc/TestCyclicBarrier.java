@@ -1,4 +1,4 @@
-package juc;
+package base.juc;
 
 import lombok.SneakyThrows;
 

@@ -1,4 +1,4 @@
-package juc;
+package base.juc;
 
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutorService;
