@@ -19,7 +19,8 @@ public class ProxyTest {
         MyInvocationHandler invocationHandler = new MyInvocationHandler(userService);
 
         // 生成代理对象
-        UserService proxy = (UserService) invocationHandler.getProxy();
+//        UserService proxy = (UserService) invocationHandler.getProxy();
+        UserService proxy = (UserService) JdkProxyFactory.getProxy(userService);
 
         // 调用代理对象的方法
         proxy.add();
