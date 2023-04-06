@@ -61,6 +61,7 @@ public class CountDownLatchEg {
         }
 
         countDownLatch.await();
+
         taskExecutor.shutdown();
         System.out.println("finish");
     }
