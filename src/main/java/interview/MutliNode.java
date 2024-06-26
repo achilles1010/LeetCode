@@ -1,6 +1,6 @@
 package interview;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.Random;
@@ -11,20 +11,19 @@ import java.util.Random;
  * @date:  2024-06-03 16:14
  * @version V1.0
  */
-@NoArgsConstructor
-public class ListwNode<T> {
+public class MutliNode<T> {
 
     private T val;
 
-    private ListwNode<T> left;
+    private MutliNode<T> left;
 
-    private ListwNode<T> right;
+    private MutliNode<T> right;
 
-    private ListwNode<T> up;
+    private MutliNode<T> up;
 
-    private ListwNode<T> down;
+    private MutliNode<T> down;
 
-    public ListwNode(T val, ListwNode<T> left, ListwNode<T> right, ListwNode<T> up, ListwNode<T> down) {
+    public MutliNode(T val, MutliNode<T> left, MutliNode<T> right, MutliNode<T> up, MutliNode<T> down) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -32,11 +31,11 @@ public class ListwNode<T> {
         this.down = down;
     }
 
-    public ListwNode(T val) {
+    public MutliNode(T val) {
         this.val = val;
     }
 
-    public ListwNode() {
+    public MutliNode() {
     }
 
     public T getVal() {
@@ -47,66 +46,66 @@ public class ListwNode<T> {
         this.val = val;
     }
 
-    public ListwNode<T> getLeft() {
+    public MutliNode<T> getLeft() {
         return left;
     }
 
-    public void setLeft(ListwNode<T> left) {
+    public void setLeft(MutliNode<T> left) {
         this.left = left;
     }
 
-    public ListwNode<T> getRight() {
+    public MutliNode<T> getRight() {
         return right;
     }
 
-    public void setRight(ListwNode<T> right) {
+    public void setRight(MutliNode<T> right) {
         this.right = right;
     }
 
-    public ListwNode<T> getUp() {
+    public MutliNode<T> getUp() {
         return up;
     }
 
-    public void setUp(ListwNode<T> up) {
+    public void setUp(MutliNode<T> up) {
         this.up = up;
     }
 
-    public ListwNode<T> getDown() {
+    public MutliNode<T> getDown() {
         return down;
     }
 
-    public void setDown(ListwNode<T> down) {
+    public void setDown(MutliNode<T> down) {
         this.down = down;
     }
 
-    public static ListwNode<Integer> generatorArr(int n) {
+    public static MutliNode<Integer> generatorArr(int n) {
         if (n <= 0) {
             return null;
         }
 
         // 创建第一个节点
-        ListwNode<Integer> head = new ListwNode<>();
+        MutliNode<Integer> head = new MutliNode<>();
         head.val = 1;
         // 创建第一维链表
-        ListwNode<Integer> current = head;
+        MutliNode<Integer> current = head;
         for (int i = 2; i <= n; i++) {
-            ListwNode<Integer> newNode = new ListwNode<>();
+            MutliNode<Integer> newNode = new MutliNode<>();
             newNode.setVal(i);
             current.setRight(newNode);
             newNode.setLeft(current);
             current = newNode;
         }
         // 创建剩余维度的链表
-        ListwNode<Integer> prevRowHead = head;
-        ListwNode<Integer> prevRowCurrent = prevRowHead;
+        MutliNode<Integer> prevRowHead = head;
+        MutliNode<Integer> prevRowCurrent = prevRowHead;
         for (int row = 2; row <= n; row++) {
-            ListwNode<Integer> newRowHead = new ListwNode<>();
+            MutliNode<Integer> newRowHead = new MutliNode<>();
             newRowHead.setVal(n*(row-1) + 1);
             prevRowCurrent.setDown(newRowHead);
             newRowHead.setUp(prevRowCurrent);
             current = newRowHead;
             for (int col = 2; col <= n; col++) {
-                ListwNode<Integer> newNode = new ListwNode<>();
+                MutliNode<Integer> newNode = new MutliNode<>();
                 newNode.setVal((row - 1) * n + col);
                 current.setRight(newNode);
                 newNode.setLeft(current);
@@ -127,16 +126,16 @@ public class ListwNode<T> {
     public static void main(String[] args) {
         int n = new Random().nextInt(1) + 10;
         System.err.println(n + "维");
-        ListwNode node = generatorArr(4);
+        MutliNode node = generatorArr(4);
         printListwNode(node);
     }
 
-    private static void printListwNode(ListwNode node) {
-        ListwNode row = node;
+    private static void printListwNode(MutliNode node) {
+        MutliNode row = node;
         while (row != null) {
-            ListwNode cur = row;
+            MutliNode cur = row;
             while (cur != null) {
-                ListwNode down = cur.getDown();
+                MutliNode down = cur.getDown();
                 System.out.print(cur.val + " " + "up node:" + (cur.up == null ? null : cur.up.val) + "   ");
                 cur = cur.right;
             }
